@@ -65,7 +65,7 @@ public class ListAdapter_For_Users extends BaseAdapter {
 
         User_Items item=list.get(pos);
         holder.name.setText(item.getName());
-        holder.email.setText(item.getEmail());
+        holder.email.setText(item.getEmail().toLowerCase());
         holder.accountno.setText(item.getAccountno());
         holder.credits.setText(item.getCredits());
 
