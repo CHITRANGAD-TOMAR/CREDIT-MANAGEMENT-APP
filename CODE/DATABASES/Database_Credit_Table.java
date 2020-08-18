@@ -21,7 +21,7 @@ public class Database_Credit_Table extends SQLiteOpenHelper {
     public Database_Credit_Table(Context context) {
         super(context, TABLE_NAME,null,1);
     }
-    
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE credit_table(ID INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR,email VARCHAR,accountno VARCHAR,credits INT)";
