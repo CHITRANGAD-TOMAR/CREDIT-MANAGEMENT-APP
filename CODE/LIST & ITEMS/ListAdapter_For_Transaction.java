@@ -40,7 +40,7 @@ public class ListAdapter_For_Transaction extends BaseAdapter {
     }
 
     private class ViewHolder{
-        TextView transaction_id,sender_name,sender_accountno,reciever_name,reciever_accountno,transferred_amount;
+        TextView transaction_id,sender_name,sender_accountno,reciever_name,reciever_accountno,transferred_amount,recieved_amount;
     }
 
     @Override
@@ -58,6 +58,7 @@ public class ListAdapter_For_Transaction extends BaseAdapter {
             holder.reciever_name=(TextView)row.findViewById(R.id.reciever_name);
             holder.reciever_accountno=(TextView)row.findViewById(R.id.reciever_accountno);
             holder.transferred_amount=(TextView)row.findViewById(R.id.transferred_amount);
+            holder.recieved_amount=(TextView)row.findViewById(R.id.recieved_amount);
 
             row.setTag(holder);
         }
@@ -72,6 +73,7 @@ public class ListAdapter_For_Transaction extends BaseAdapter {
         holder.reciever_name.setText(item.getReciever_name());
         holder.reciever_accountno.setText(item.getReciever_accountno());
         holder.transferred_amount.setText(item.getTransferred_amount());
+        holder.recieved_amount.setText(item.getTransferred_amount());
 
         return row;
     }
