@@ -1,6 +1,5 @@
 package com.example.cm;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,12 +8,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.cm.Databases.Database_Credit_Table;
@@ -33,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<User_Items> list;
     ListAdapter_For_Users adapter = null;
     Database_Credit_Table mdatabase_credit_table;
+    ImageButton transaction_btn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         // set title for main screen
         this.setTitle("ALL USERS");
 
+        transaction_btn = (ImageButton) findViewById(R.id.transaction_btn);
         gridView = (GridView) findViewById(R.id.gridview_for_users);
         list = new ArrayList<User_Items>();
         adapter = new ListAdapter_For_Users(this, R.layout.user_list, list);
@@ -54,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Add_User.class);
+                startActivity(intent);
+            }
+        });
+
+        transaction_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Transaction_Log.class);
                 startActivity(intent);
             }
         });
@@ -117,14 +125,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(final AdapterView<?> adapterView, View view, final int i, long l) {
 
-                CharSequence[] items = {"update","delete"};
+                CharSequence[] items = {"UPDATE","DELETE"};
                 AlertDialog.Builder dialog= new AlertDialog.Builder(MainActivity.this);
-                dialog.setTitle("Choose an action:");
+                dialog.setTitle("CHOOSE AN ACTION:");
                 dialog.setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int item) {
-                        
-                // Update User's info        
+
+                // Update User's info
                 if (item==0){
 
                     String name = adapterView.getItemAtPosition(i).toString();
@@ -176,36 +184,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        
-        //Menu button
-        switch (item.getItemId())
-        {
-            case R.id.transaction_log:
-                Intent intent= new Intent(MainActivity.this, Transaction_Log.class);
-                startActivity(intent);
-                return true;
-            case R.id.about_me:
-                Toast.makeText(getApplicationContext(), "This App Is Created By: CHITRANGAD SINGH TOMAR (ANDROID DEVELOPER)", Toast.LENGTH_LONG).show();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void showDialogDelete(final int iddel)
     {
         // Delete User
         final AlertDialog.Builder dialogbuilder =new AlertDialog.Builder(MainActivity.this);
-        dialogbuilder.setTitle("Warning!!!");
-        dialogbuilder.setMessage("Are you sure want to delete this?");
+        dialogbuilder.setTitle("REMOVE USER");
+        dialogbuilder.setMessage("Do you really want to remove this user?");
 
         dialogbuilder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
@@ -219,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 try {
                     mdatabase_credit_table.deletedata(iddel);
-                    Toast.makeText(getApplicationContext(), "data deleted successfully", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "User removed successfully", Toast.LENGTH_LONG).show();
                 }
                 catch (Exception e){
                     Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_LONG).show();
