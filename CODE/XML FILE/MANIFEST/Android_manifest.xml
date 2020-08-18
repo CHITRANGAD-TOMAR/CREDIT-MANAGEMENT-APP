@@ -12,8 +12,7 @@
         <activity android:name=".Transaction_Log"></activity>
         <activity android:name=".UserOperation.Update_User" />
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
