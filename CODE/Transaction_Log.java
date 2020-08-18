@@ -1,32 +1,16 @@
 package com.example.cm;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
-import com.example.cm.Databases.Database_Credit_Table;
 import com.example.cm.Databases.Database_Transaction_Table;
 import com.example.cm.List.ListAdapter_For_Transaction;
-import com.example.cm.List.ListAdapter_For_Users;
 import com.example.cm.List.Transaction_Items;
-import com.example.cm.List.User_Items;
-import com.example.cm.UserOperation.Add_User;
-import com.example.cm.UserOperation.Update_User;
-import com.example.cm.UserOperation.View_User;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 import java.util.ArrayList;
 
